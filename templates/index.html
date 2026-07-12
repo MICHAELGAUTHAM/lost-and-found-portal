@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="hero-section">
+    <h1>Reuniting Students with their Belongings</h1>
+    <p>A smart portal to report lost items and submit found items on campus.</p>
+    <div class="d-flex justify-content-center gap-3">
+        <a href="{{ url_for('search') }}" class="btn btn-primary-custom btn-lg"><i class="fa-solid fa-search"></i> Browse Items</a>
+        <a href="{{ url_for('add_item', type='lost') }}" class="btn btn-secondary-custom btn-lg"><i class="fa-solid fa-bullhorn"></i> Report Lost Item</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <h3 class="mb-3 text-primary"><i class="fa-solid fa-heart-crack"></i> Recently Lost</h3>
+        {% if lost_items %}
+            <div class="row g-3">
+                {% for item in lost_items %}
+                <div class="col-12">
+                    <div class="glass-card p-3 d-flex align-items-center">
+                        {% if item.image_filename %}
+                        <img src="{{ url_for('static', filename='uploads/' + item.image_filename) }}" alt="Lost Item" class="rounded me-3" style="width: 80px; height: 80px; object-fit: cover;">
+                        {% else %}
+                        <div class="bg-light rounded me-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="fa-solid fa-image text-muted fs-3"></i>
+                        </div>
+                        {% endif %}
+                        <div>
+                            <h5 class="mb-1">{{ item.name }}</h5>
+                            <p class="mb-1 text-muted small"><i class="fa-solid fa-location-dot"></i> {{ item.location }} | <i class="fa-regular fa-calendar"></i> {{ item.date_lost }}</p>
+                            <span class="badge bg-danger">Lost</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-muted">No recently lost items.</p>
+        {% endif %}
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <h3 class="mb-3 text-success"><i class="fa-solid fa-hand-holding-heart"></i> Recently Found</h3>
+        {% if found_items %}
+            <div class="row g-3">
+                {% for item in found_items %}
+                <div class="col-12">
+                    <div class="glass-card p-3 d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            {% if item.image_filename %}
+                            <img src="{{ url_for('static', filename='uploads/' + item.image_filename) }}" alt="Found Item" class="rounded me-3" style="width: 80px; height: 80px; object-fit: cover;">
+                            {% else %}
+                            <div class="bg-light rounded me-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                <i class="fa-solid fa-image text-muted fs-3"></i>
+                            </div>
+                            {% endif %}
+                            <div>
+                                <h5 class="mb-1">{{ item.name }}</h5>
+                                <p class="mb-1 text-muted small"><i class="fa-solid fa-location-dot"></i> {{ item.location }} | <i class="fa-regular fa-calendar"></i> {{ item.date_found }}</p>
+                                {% if item.status == 'open' %}
+                                    <span class="badge bg-success">Found</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">{{ item.status|capitalize }}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% if item.status == 'open' %}
+                            <a href="{{ url_for('claim', found_item_id=item.id) }}" class="btn btn-outline-success btn-sm">Claim</a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-muted">No recently found items.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

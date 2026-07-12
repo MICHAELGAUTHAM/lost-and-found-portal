@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Database Viewer: lost_and_found</title>
+<style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f4f4f9; color: #333; }
+    h1 { color: #2c3e50; }
+    h2 { color: #34495e; margin-top: 30px; padding-bottom: 10px; border-bottom: 2px solid #bdc3c7; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 20px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+    th, td { padding: 12px 15px; text-align: left; border: 1px solid #ddd; }
+    th { background-color: #2980b9; color: white; }
+    tr:nth-child(even) { background-color: #f2f2f2; }
+    .empty { font-style: italic; color: #7f8c8d; }
+</style>
+</head>
+<body>
+    <h1>Database: lost_and_found</h1>
+<h2>Table: users</h2><table><thead><tr><th>id</th><th>username</th><th>email</th><th>password_hash</th><th>role</th><th>created_at</th></tr></thead><tbody><tr><td>1</td><td>michaelgautham</td><td>michaelgautham18@gmail.com</td><td>scrypt:32768:8:1$PoyKBZo9UGTKKxVy$8b5e545353df31b1e95508b0f90791d36e2b9ca212bf60eb5b72bda242a957d4ad3a64676fddd789fefdc73cf2db7c4505d584821cc15227420efc525a69759d</td><td>student</td><td>2026-04-28 22:37:40.899936</td></tr></tbody></table><h2>Table: lost_items</h2><table><thead><tr><th>id</th><th>user_id</th><th>name</th><th>description</th><th>category</th><th>location</th><th>date_lost</th><th>status</th><th>image_filename</th><th>created_at</th></tr></thead><tbody><tr><td colspan='10' class='empty'>No records found in this table.</td></tr></tbody></table><h2>Table: found_items</h2><table><thead><tr><th>id</th><th>user_id</th><th>name</th><th>description</th><th>category</th><th>location</th><th>date_found</th><th>status</th><th>image_filename</th><th>created_at</th></tr></thead><tbody><tr><td colspan='10' class='empty'>No records found in this table.</td></tr></tbody></table><h2>Table: claims</h2><table><thead><tr><th>id</th><th>user_id</th><th>found_item_id</th><th>proof_description</th><th>status</th><th>created_at</th></tr></thead><tbody><tr><td colspan='6' class='empty'>No records found in this table.</td></tr></tbody></table>
+</body>
+</html>

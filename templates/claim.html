@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="glass-card p-5">
+            <h2 class="mb-4 text-center text-success"><i class="fa-solid fa-handshake"></i> Claim Item</h2>
+            <p class="text-center text-muted mb-4">Please provide detailed proof that this item belongs to you. This could be a description of a specific identifying mark, serial number, or contents inside.</p>
+            
+            <form method="POST">
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Proof of Ownership</label>
+                    <textarea class="form-control" name="proof_description" rows="5" required placeholder="Describe specific details only the owner would know..."></textarea>
+                </div>
+                
+                <div class="d-flex justify-content-between">
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-success px-4">Submit Claim</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
